@@ -2,7 +2,9 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./services/db.js";
-import expenseRoutes from "./controllers/expenseRoutes.js";
+import expenseRoutes from "./controllers/expense/expenseRoutes.js";
+import userRoutes from "./controllers/user/userRoutes.js";
+import authRoutes from "./controllers/auth/authRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -22,6 +24,8 @@ app.use(express.json());
 
 // --- Routes ---
 app.use("/expenses", expenseRoutes);
+app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
 
 // --- DB Connection ---
 connectDB();

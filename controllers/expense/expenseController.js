@@ -1,7 +1,8 @@
-import { Expense } from "../models/Expense.js";
+import { Expense } from "../../models/Expense.js";
 export const getExpense = async (req, res) => {
     try {
-        const expenses = await Expense.find();
+        const { userId } = req.user;
+        const expenses = await Expense.find({ UserId: userId });
         res.json(expenses);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -9,6 +10,8 @@ export const getExpense = async (req, res) => {
 };
 export const createExpense = async (req, res) => {
     try {
+        const { userId } = req.user;
+        req.body.UserId = userId;
         const expense = new Expense(req.body);
         await expense.save();
         res.status(201).json(expense);

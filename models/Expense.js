@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 // Define the schema (structure of a document saved to the mongo db)
 const ExpenseSchema = new mongoose.Schema(
 {
+    UserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, "UserId is required"]
+    },
     amount: {
         type: Number,
         required: [true, "Amount is required"],
