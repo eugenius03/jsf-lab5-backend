@@ -13,5 +13,12 @@ export const login = async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: "1h" }
     );
+    res.cookie("x-auth-token", `Bearer ${token}`,
+        {
+            httpOnly: true,
+            sameSite: "strict",
+            maxAge: 3600 // 1 hour
+        }
+    );
     res.json({ token });
 };

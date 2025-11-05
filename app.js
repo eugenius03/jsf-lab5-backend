@@ -5,6 +5,7 @@ import { connectDB } from "./services/db.js";
 import expenseRoutes from "./controllers/expense/expenseRoutes.js";
 import userRoutes from "./controllers/user/userRoutes.js";
 import authRoutes from "./controllers/auth/authRoutes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.use(
 );
 
 // --- Middleware ---
+app.use(cookieParser());
 app.use(express.json());
 
 // --- Routes ---
