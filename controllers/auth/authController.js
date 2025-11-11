@@ -37,7 +37,6 @@ export const login = async (req, res) => {
         {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
             maxAge: 86400000 // 1 day
         }
     );
@@ -58,7 +57,6 @@ export const register = async (req, res) => {
             {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "lax",
                 maxAge: 86400000 // 1 day
             }
         );
