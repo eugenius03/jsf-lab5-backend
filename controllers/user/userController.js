@@ -2,7 +2,7 @@ import hashMiddleware from "../../middleware/hashMiddleware.js";
 import { User } from "../../models/User.js";
 export const getUser = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find(req.query);
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: err.message });
